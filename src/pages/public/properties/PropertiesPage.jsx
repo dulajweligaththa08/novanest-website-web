@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { Search, SlidersHorizontal, X, ChevronDown } from 'lucide-react'
 import api from '../../../lib/api'
+import { keepPreviousData } from '../../../lib/queryClient'
 import PageHero from '../../../components/ui/PageHero'
 import PropertyCard from '../../../components/ui/PropertyCard'
 import LoadingSpinner from '../../../components/ui/LoadingSpinner'
@@ -56,7 +57,7 @@ export default function PropertiesPage() {
   const { data, isLoading } = useQuery({
     queryKey: ['apartments-public', params],
     queryFn: () => api.get('/apartments', { params }).then(r => r.data),
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
   })
 
   const apartments = data?.data || []

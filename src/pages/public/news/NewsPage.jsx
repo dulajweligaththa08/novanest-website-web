@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { Calendar, Clock, ArrowRight, Newspaper } from 'lucide-react'
 import api from '../../../lib/api'
+import { keepPreviousData } from '../../../lib/queryClient'
 import PageHero from '../../../components/ui/PageHero'
 import LoadingSpinner from '../../../components/ui/LoadingSpinner'
 import { formatDate } from '../../../lib/utils'
@@ -24,7 +25,7 @@ export default function NewsPage() {
   const { data, isLoading } = useQuery({
     queryKey: ['articles-public', params],
     queryFn: () => api.get('/news', { params }).then(r => r.data),
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
   })
 
   const articles   = data?.data       || []

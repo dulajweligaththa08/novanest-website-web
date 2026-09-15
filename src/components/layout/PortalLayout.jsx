@@ -3,6 +3,8 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { Menu } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import PortalSidebar from './PortalSidebar'
+import ScrollToTop from './ScrollToTop'
+import PageLoader from '../ui/PageLoader'
 import api from '../../lib/api'
 
 const PAGE_TITLES = {
@@ -33,6 +35,8 @@ export default function PortalLayout() {
 
   return (
     <div className="flex h-screen overflow-hidden bg-gray-50">
+      <ScrollToTop />
+      <PageLoader />
       {/* Desktop sidebar */}
       <div className="hidden lg:flex lg:flex-shrink-0">
         <PortalSidebar unreadCount={unreadCount} />
