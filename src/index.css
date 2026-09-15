@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-white text-gray-900 font-sans antialiased; }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-gray-100; }
+  ::-webkit-scrollbar-thumb { @apply bg-gray-300 rounded-full; }
+}
+
+@layer components {
+
+  /* ── Buttons ──────────────────────────────────────────────────── */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 bg-gold-500 text-white font-semibold
+           rounded-lg hover:bg-gold-600 active:bg-gold-700 transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary-lg {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 bg-gold-500 text-white font-semibold
+           rounded-lg hover:bg-gold-600 active:bg-gold-700 transition-all duration-200 text-base;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 bg-transparent text-white font-semibold
+           rounded-lg border border-white/40 hover:bg-white/10 transition-all duration-200;
+  }
+  .btn-outline-gold {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 bg-transparent text-gold-500 font-semibold
+           rounded-lg border border-gold-500 hover:bg-gold-500 hover:text-white transition-all duration-200;
+  }
+  .btn-white {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 bg-white text-navy-900 font-semibold
+           rounded-lg hover:bg-gray-100 transition-all duration-200;
+  }
+
+  /* ── Form elements ────────────────────────────────────────────── */
+  .input {
+    @apply w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none
+           focus:ring-2 focus:ring-gold-500 focus:border-transparent placeholder-gray-400
+           bg-white text-gray-900;
+  }
+  .input-dark {
+    @apply w-full px-3 py-2.5 border border-white/20 rounded-lg text-sm focus:outline-none
+           focus:ring-2 focus:ring-gold-500 focus:border-transparent placeholder-white/40
+           bg-white/10 text-white;
+  }
+  .label { @apply block text-sm font-medium text-gray-700 mb-1; }
+  .label-white { @apply block text-sm font-medium text-white/80 mb-1; }
+
+  /* ── Cards ────────────────────────────────────────────────────── */
+  .card { @apply bg-white rounded-2xl border border-gray-100 shadow-sm; }
+  .card-hover {
+    @apply bg-white rounded-2xl border border-gray-100 shadow-sm
+           hover:shadow-xl hover:-translate-y-1 transition-all duration-300;
+  }
+
+  /* ── Property card badge ──────────────────────────────────────── */
+  .badge-available  { @apply bg-emerald-500 text-white text-xs font-semibold px-2.5 py-1 rounded-full; }
+  .badge-reserved   { @apply bg-amber-500 text-white text-xs font-semibold px-2.5 py-1 rounded-full; }
+  .badge-sold       { @apply bg-red-500 text-white text-xs font-semibold px-2.5 py-1 rounded-full; }
+
+  /* ── Section layouts ──────────────────────────────────────────── */
+  .section { @apply py-16 lg:py-24; }
+  .section-sm { @apply py-10 lg:py-16; }
+  .container-site { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+
+  /* ── Hero ─────────────────────────────────────────────────────── */
+  .hero-overlay {
+    @apply absolute inset-0 bg-gradient-to-r from-navy-900/95 via-navy-900/70 to-transparent;
+  }
+  .hero-overlay-full {
+    @apply absolute inset-0 bg-navy-900/70;
+  }
+
+  /* ── Nav link ─────────────────────────────────────────────────── */
+  .nav-link {
+    @apply text-sm font-medium text-white/80 hover:text-white transition-colors duration-150
+           relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5
+           after:bg-gold-500 after:transition-all hover:after:w-full;
+  }
+  .nav-link-active {
+    @apply text-white after:w-full;
+  }
+
+  /* ── Stat card ────────────────────────────────────────────────── */
+  .stat-item {
+    @apply flex flex-col items-center gap-1 px-6 py-4 border-r border-white/10 last:border-0;
+  }
+
+  /* ── Tab button ───────────────────────────────────────────────── */
+  .tab-btn {
+    @apply px-4 py-2.5 text-sm font-medium text-gray-600 border-b-2 border-transparent
+           hover:text-navy-900 hover:border-gold-400 transition-all whitespace-nowrap;
+  }
+  .tab-btn-active {
+    @apply text-navy-900 border-gold-500;
+  }
+
+  /* ── Filter chip ──────────────────────────────────────────────── */
+  .filter-chip {
+    @apply px-3 py-1.5 rounded-lg text-sm font-medium border transition-colors cursor-pointer
+           border-gray-200 text-gray-600 hover:border-gold-400 hover:text-navy-900 bg-white;
+  }
+  .filter-chip-active {
+    @apply border-gold-500 text-navy-900 bg-yellow-50;
+  }
+
+  /* ── Portal (customer) overrides ─────────────────────────────── */
+  .update-booking      { @apply border-l-4 border-emerald-400 bg-emerald-50; }
+  .update-payment      { @apply border-l-4 border-blue-400 bg-blue-50; }
+  .update-construction { @apply border-l-4 border-amber-400 bg-amber-50; }
+  .update-completion   { @apply border-l-4 border-purple-400 bg-purple-50; }
+  .update-handover     { @apply border-l-4 border-gold-500 bg-yellow-50; }
+  .update-announcement { @apply border-l-4 border-red-400 bg-red-50; }
+  .update-inspection   { @apply border-l-4 border-cyan-400 bg-cyan-50; }
+  .update-document     { @apply border-l-4 border-indigo-400 bg-indigo-50; }
+  .update-general      { @apply border-l-4 border-gray-300 bg-gray-50; }
+}
