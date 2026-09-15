@@ -43,7 +43,7 @@ export default function HomePage() {
   const featured   = projects[0]
 
   return (
-    <div className="bg-white">
+    <div className="bg-cream-50">
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-navy-900">
@@ -147,7 +147,7 @@ export default function HomePage() {
 
       {/* ── FEATURED PROJECTS ─────────────────────────────────────────────── */}
       {projects.length > 0 && (
-        <section className="section bg-gray-50">
+        <section className="section bg-cream-200">
           <div className="container-site">
             <SectionHeader
               label="Our Projects"
@@ -170,7 +170,7 @@ export default function HomePage() {
 
       {/* ── AVAILABLE APARTMENTS ──────────────────────────────────────────── */}
       {apartments.length > 0 && (
-        <section className="section bg-white">
+        <section className="section bg-cream-50">
           <div className="container-site">
             <SectionHeader
               label="Available Units"

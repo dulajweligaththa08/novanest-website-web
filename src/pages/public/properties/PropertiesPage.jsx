@@ -111,7 +111,7 @@ export default function PropertiesPage() {
           {/* ── Sidebar filters ── */}
           <aside className={`w-64 flex-shrink-0 space-y-6
             ${showFilters ? 'block' : 'hidden'} lg:block`}>
-            <div className="card p-5 space-y-5 sticky top-24">
+            <div className="card p-5 space-y-5 sticky top-24" style={{backgroundColor: '#F0EFE9'}}>
 
               {/* Search */}
               <div>

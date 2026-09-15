@@ -89,7 +89,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Our Values ── */}
-      <section className="section bg-gray-50">
+      <section className="section bg-cream-200">
         <div className="container-site">
           <div className="text-center mb-12">
             <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-gold-600 uppercase mb-3">
