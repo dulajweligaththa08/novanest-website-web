@@ -5,8 +5,5 @@ dist/
 .env.local
 .DS_Store
 
-# Large video files - serve from CDN instead
-*.mp4
-*.mov
-*.avi
-*.mkv
+# Video files over 100MB (GitHub limit)
+public/images/1hero-home/222.mp4
