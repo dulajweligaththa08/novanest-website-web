@@ -240,7 +240,7 @@ export default function HomePage() {
               └── Bottom stats bar pill
       ════════════════════════════════════════════════════════════════════ */}
       <section className="relative bg-navy-900 overflow-hidden"
-        style={{ minHeight: '100svh', paddingTop: '74px' }}>
+        style={{ minHeight: '100svh', paddingTop: '120px' }}>
 
         {/* ── Outer glass frame ───────────────────────────────────────────── */}
         <div className="relative z-10 flex items-stretch min-h-screen p-3 lg:p-5">

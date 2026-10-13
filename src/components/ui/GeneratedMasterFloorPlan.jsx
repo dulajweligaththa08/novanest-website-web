@@ -18,7 +18,7 @@ export default function GeneratedMasterFloorPlan({ floor, buildingName, onUnitSe
   const selectedUnit = apartments.find(a => a.id === selectedUnitId) || apartments[0]
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 overflow-x-hidden">
       {/* Header bar */}
       <div className="bg-navy-900/5 p-5 rounded-2xl border border-navy-900/10 flex flex-wrap items-center justify-between gap-4">
         <div>
@@ -78,7 +78,7 @@ export default function GeneratedMasterFloorPlan({ floor, buildingName, onUnitSe
       ) : apartments.length > 0 ? (
         <div className="space-y-6">
           {/* Architectural Layout Blueprint Diagram */}
-          <div className="bg-navy-950 p-6 lg:p-8 rounded-3xl text-white shadow-xl border border-navy-800 relative overflow-hidden">
+          <div className="bg-navy-950 p-4 lg:p-8 rounded-3xl text-white shadow-xl border border-navy-800 relative overflow-hidden">
             <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none">
               <Compass className="w-64 h-64 text-gold-400" />
             </div>
@@ -87,10 +87,10 @@ export default function GeneratedMasterFloorPlan({ floor, buildingName, onUnitSe
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-gold-400" />
                 <span className="font-bold text-sm tracking-wide uppercase text-gold-400">
-                  Architectural Layout Diagram · Floor {floor.floorNumber}
+                  Architectural Layout · Floor {floor.floorNumber}
                 </span>
               </div>
-              <div className="flex items-center gap-4 text-xs">
+              <div className="flex flex-wrap items-center gap-3 text-xs">
                 <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-emerald-500 inline-block" /> Available</span>
                 <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-amber-500 inline-block" /> Reserved</span>
                 <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-rose-500 inline-block" /> Sold</span>
@@ -100,12 +100,12 @@ export default function GeneratedMasterFloorPlan({ floor, buildingName, onUnitSe
             {/* Central Corridor & Room Layout Grid */}
             <div className="space-y-6">
               {/* Central Building Services Core */}
-              <div className="bg-navy-900/90 border border-white/15 p-3 rounded-xl flex items-center justify-around text-center text-xs text-white/70">
+              <div className="bg-navy-900/90 border border-white/15 p-3 rounded-xl flex flex-wrap items-center justify-around gap-2 text-center text-xs text-white/70">
                 <span className="flex items-center gap-1 font-semibold text-gold-300">🛗 Elevator Lobby</span>
-                <span className="text-white/20">|</span>
-                <span className="flex items-center gap-1 font-semibold text-gold-300">🚪 Main Access Corridor</span>
-                <span className="text-white/20">|</span>
-                <span className="flex items-center gap-1 font-semibold text-gold-300">🪜 Fire Escape Stairs</span>
+                <span className="hidden sm:block text-white/20">|</span>
+                <span className="flex items-center gap-1 font-semibold text-gold-300">🚪 Main Corridor</span>
+                <span className="hidden sm:block text-white/20">|</span>
+                <span className="flex items-center gap-1 font-semibold text-gold-300">🪜 Fire Escape</span>
               </div>
 
               {/* Apartment Room Cards Grid */}
@@ -159,13 +159,13 @@ export default function GeneratedMasterFloorPlan({ floor, buildingName, onUnitSe
           {/* Selected Unit Details Card */}
           {selectedUnit && (
             <div className="bg-white p-6 rounded-2xl border border-gold-500/30 shadow-md space-y-4">
-              <div className="flex flex-wrap items-center justify-between gap-4 border-b border-gray-100 pb-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-gray-100 pb-3">
                 <div>
-                  <span className="text-xs font-semibold text-gold-600 uppercase tracking-wider">Interactive Floor Plan Inspector</span>
-                  <h4 className="text-xl font-bold text-navy-900">Unit {selectedUnit.unitNumber} ({selectedUnit.apartmentType?.name || 'Apartment'})</h4>
+                  <span className="text-xs font-semibold text-gold-600 uppercase tracking-wider">Selected Unit</span>
+                  <h4 className="text-lg font-bold text-navy-900">Unit {selectedUnit.unitNumber} ({selectedUnit.apartmentType?.name || 'Apartment'})</h4>
                 </div>
-                <div className="text-right">
-                  <span className="text-2xl font-extrabold text-navy-900">
+                <div className="sm:text-right">
+                  <span className="text-xl font-extrabold text-navy-900">
                     {selectedUnit.price ? `LKR ${Number(selectedUnit.price).toLocaleString()}` : 'Price on Enquiry'}
                   </span>
                   <p className="text-xs text-gray-500">Floor {floor.floorNumber} · {buildingName}</p>
