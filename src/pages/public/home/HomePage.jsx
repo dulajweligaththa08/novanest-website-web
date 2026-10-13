@@ -21,15 +21,15 @@ import {
 const HERO_MEDIA = [
   //{ type: 'image', src: '/images/1hero-home/1hero-home.jpg', alt: 'NovaNest Premium Living' },
   //{ type: 'video', src: '/images/1hero-home/1006.mp4' },
-  { type: 'video', src: '/images/1hero-home/1006(1).mp4' },
-  { type: 'video', src: '/images/1hero-home/222.mp4' },
-  { type: 'video', src: '/images/1hero-home/333.mp4' },
-  { type: 'video', src: '/images/1hero-home/444.mp4' },
-  { type: 'video', src: '/images/1hero-home/555.mp4' },
-  { type: 'video', src: '/images/1hero-home/666.mp4' },
-  { type: 'video', src: '/images/1hero-home/777.mp4' },
-  { type: 'video', src: '/images/1hero-home/888.mp4' },
-  { type: 'video', src: '/images/1hero-home/999.mp4' },
+  { type: 'video', src: 'https://res.cloudinary.com/c5kaazrm/video/upload/v1791879423/1006_1.mp4' },
+/*  { type: 'video', src: '/images/1hero-home/222.mp4' },*/
+  { type: 'video', src: 'https://res.cloudinary.com/c5kaazrm/video/upload/v1791879207/333.mp4' },
+  { type: 'video', src: 'https://res.cloudinary.com/c5kaazrm/video/upload/v1791879274/444.mp4' },
+  { type: 'video', src: 'https://res.cloudinary.com/c5kaazrm/video/upload/v1791879136/555.mp4' },
+  { type: 'video', src: 'https://res.cloudinary.com/c5kaazrm/video/upload/v1791879386/666.mp4' },
+  /*{ type: 'video', src: '/images/1hero-home/777.mp4' },*/
+  { type: 'video', src: 'https://res.cloudinary.com/c5kaazrm/video/upload/v1791879527/888.mp4' },
+  { type: 'video', src: 'https://res.cloudinary.com/c5kaazrm/video/upload/v1791879281/999.mp4' },
 ]
 
 
@@ -240,7 +240,7 @@ export default function HomePage() {
               └── Bottom stats bar pill
       ════════════════════════════════════════════════════════════════════ */}
       <section className="relative bg-navy-900 overflow-hidden"
-        style={{ minHeight: '100svh' }}>
+        style={{ minHeight: '100svh', paddingTop: '74px' }}>
 
         {/* ── Outer glass frame ───────────────────────────────────────────── */}
         <div className="relative z-10 flex items-stretch min-h-screen p-3 lg:p-5">
