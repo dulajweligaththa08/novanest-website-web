@@ -24,8 +24,8 @@ export default function ProjectsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {(data || []).map(p => (
               <Link key={p.id} to={`/projects/${p.slug}`}
-                className="card-hover group overflow-hidden block">
-                <div className="relative h-56 overflow-hidden">
+                className="card-hover group block">
+                <div className="relative h-56 overflow-hidden rounded-t-2xl">
                   {p.mainImage ? (
                     <img src={p.mainImage} alt={p.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -37,8 +37,8 @@ export default function ProjectsPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent" />
                   <span className={`absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-full
                     ${p.status === 'COMPLETED' ? 'bg-blue-500 text-white'
-                    : p.status === 'ONGOING' ? 'bg-emerald-500 text-white'
-                    : 'bg-amber-500 text-white'}`}>
+                      : p.status === 'ONGOING' ? 'bg-emerald-500 text-white'
+                        : 'bg-amber-500 text-white'}`}>
                     {p.status}
                   </span>
                 </div>

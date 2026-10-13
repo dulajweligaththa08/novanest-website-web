@@ -4,3 +4,9 @@ dist/
 .env
 .env.local
 .DS_Store
+
+# Large video files - serve from CDN instead
+*.mp4
+*.mov
+*.avi
+*.mkv

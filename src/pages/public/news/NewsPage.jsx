@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { Calendar, Clock, ArrowRight, Newspaper } from 'lucide-react'
 import api from '../../../lib/api'
-import { keepPreviousData } from '../../../lib/queryClient'
 import PageHero from '../../../components/ui/PageHero'
 import LoadingSpinner from '../../../components/ui/LoadingSpinner'
 import { formatDate } from '../../../lib/utils'
@@ -14,7 +13,7 @@ const CATEGORIES = [
 
 export default function NewsPage() {
   const [category, setCategory] = useState('All')
-  const [page, setPage]         = useState(1)
+  const [page, setPage] = useState(1)
 
   const params = {
     limit: 9,
@@ -25,10 +24,10 @@ export default function NewsPage() {
   const { data, isLoading } = useQuery({
     queryKey: ['articles-public', params],
     queryFn: () => api.get('/news', { params }).then(r => r.data),
-    placeholderData: keepPreviousData,
+    keepPreviousData: true,
   })
 
-  const articles   = data?.data       || []
+  const articles = data?.data || []
   const pagination = data?.pagination
 
   return (
@@ -96,9 +95,9 @@ export default function NewsPage() {
 function ArticleCard({ article }) {
   return (
     <Link to={`/news/${article.slug}`}
-      className="card-hover group overflow-hidden flex flex-col">
+      className="card-hover group flex flex-col">
       {/* Thumbnail */}
-      <div className="relative h-48 overflow-hidden bg-navy-100">
+      <div className="relative h-48 overflow-hidden bg-navy-100 rounded-t-2xl">
         {article.thumbnail ? (
           <img src={article.thumbnail} alt={article.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />

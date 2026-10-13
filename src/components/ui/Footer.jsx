@@ -2,11 +2,10 @@ import { Link } from 'react-router-dom'
 import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react'
 
 const footerLinks = {
-  Properties: [
-    { label: 'All Properties', to: '/properties' },
-    { label: 'Projects',       to: '/projects' },
-    { label: 'Floor Plans',    to: '/properties' },
-    { label: 'Availability',   to: '/properties' },
+  Categories: [
+    { label: 'Apartment', to: '/apartments' },
+    { label: 'House',     to: '/houses' },
+    { label: 'Land',      to: '/land' },
   ],
   Company: [
     { label: 'About Us',  to: '/about' },
@@ -80,7 +79,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-white/40 text-xs">
-            © {new Date().getFullYear()} NovaNest Properties. All rights reserved.
+            © {new Date().getFullYear()} NovaNest Properties IT Division. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             <Link to="/privacy" className="text-white/40 hover:text-white/70 text-xs transition-colors">Privacy Policy</Link>

@@ -12,6 +12,7 @@ import PropertiesPage     from './pages/public/properties/PropertiesPage'
 import ProjectsPage       from './pages/public/projects/ProjectsPage'
 import ProjectDetailPage  from './pages/public/projects/ProjectDetailPage'
 import ApartmentDetailPage from './pages/public/apartments/ApartmentDetailPage'
+import ListingDetailPage  from './pages/public/listings/ListingDetailPage'
 import AboutPage          from './pages/public/about/AboutPage'
 import CareersPage        from './pages/public/careers/CareersPage'
 import NewsPage           from './pages/public/news/NewsPage'
@@ -36,10 +37,14 @@ export default function App() {
       {/* ── Public website ─────────────────────────────────────── */}
       <Route element={<PublicLayout />}>
         <Route path="/"              element={<HomePage />} />
-        <Route path="/properties"    element={<PropertiesPage />} />
+        <Route path="/apartments"    element={<PropertiesPage key="apartments" defaultTab="APARTMENT" pageTitle="Apartments" />} />
+        <Route path="/houses"        element={<PropertiesPage key="houses"     defaultTab="HOUSE"      pageTitle="Houses"     />} />
+        <Route path="/land"          element={<PropertiesPage key="land"       defaultTab="LAND"       pageTitle="Land"       />} />
+        <Route path="/properties"    element={<PropertiesPage defaultTab="ALL" pageTitle="Properties" />} />
         <Route path="/projects"      element={<ProjectsPage />} />
         <Route path="/projects/:slug" element={<ProjectDetailPage />} />
-        <Route path="/apartments/:id" element={<ApartmentDetailPage />} />
+        <Route path="/apartments/:slug" element={<ProjectDetailPage />} />
+        <Route path="/listings/:id"  element={<ListingDetailPage />} />
         <Route path="/about"         element={<AboutPage />} />
         <Route path="/careers"       element={<CareersPage />} />
         <Route path="/news"          element={<NewsPage />} />

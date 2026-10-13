@@ -49,13 +49,24 @@ export default function LoginPage() {
         </div>
 
         {/* Card */}
-        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+        <div className="rounded-2xl overflow-hidden"
+          style={{
+            background: 'linear-gradient(145deg, rgba(180,210,230,0.18) 0%, rgba(150,195,220,0.08) 40%, rgba(140,190,215,0.14) 100%)',
+            backdropFilter: 'blur(24px) saturate(1.4)',
+            WebkitBackdropFilter: 'blur(24px) saturate(1.4)',
+            border: '1.5px solid rgba(140,200,225,0.40)',
+            borderTopColor:    'rgba(200,235,248,0.70)',
+            borderLeftColor:   'rgba(185,228,244,0.60)',
+            borderRightColor:  'rgba(115,178,212,0.25)',
+            borderBottomColor: 'rgba(95,162,202,0.22)',
+            boxShadow: '0 16px 48px rgba(0,0,0,0.45), 0 4px 16px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.60), inset 0 2px 5px rgba(255,255,255,0.18), inset 0 -1px 0 rgba(80,140,175,0.22)',
+          }}>
           {/* Gold top bar */}
           <div className="h-1 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600" />
 
           <div className="p-8">
-            <h2 className="text-lg font-semibold text-gray-900 mb-1">Welcome back</h2>
-            <p className="text-sm text-gray-500 mb-6">Sign in to view your apartment details and updates.</p>
+            <h2 className="text-lg font-semibold text-white mb-1">Welcome back</h2>
+            <p className="text-white/60 text-sm mb-6">Sign in to view your apartment details and updates.</p>
 
             {error && (
               <div className="mb-5 p-3 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700 flex gap-2">
@@ -67,14 +78,14 @@ export default function LoginPage() {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               {/* Email */}
               <div>
-                <label className="label">Email address</label>
+                <label className="label-white">Email address</label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
                   <input
                     type="email"
                     autoComplete="email"
                     placeholder="your@email.com"
-                    className={`input pl-9 ${errors.email ? 'border-red-400 focus:ring-red-400' : ''}`}
+                    className={`input-dark pl-9 ${errors.email ? 'border-red-400' : ''}`}
                     {...register('email', {
                       required: 'Email is required',
                       pattern: {
@@ -91,14 +102,14 @@ export default function LoginPage() {
 
               {/* Password */}
               <div>
-                <label className="label">Password</label>
+                <label className="label-white">Password</label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
                   <input
                     type={showPassword ? 'text' : 'password'}
                     autoComplete="current-password"
                     placeholder="••••••••"
-                    className={`input pl-9 pr-10 ${errors.password ? 'border-red-400 focus:ring-red-400' : ''}`}
+                    className={`input-dark pl-9 pr-10 ${errors.password ? 'border-red-400' : ''}`}
                     {...register('password', { required: 'Password is required' })}
                   />
                   <button

@@ -1,30 +1,40 @@
 import { Link } from 'react-router-dom'
-import { ShieldCheck, Lightbulb, Heart, Leaf, ArrowRight,
-         Award, Building2, Users, MapPinned } from 'lucide-react'
+import {
+  ShieldCheck, Lightbulb, Heart, Leaf, ArrowRight,
+  Award, Building2, Users, MapPinned
+} from 'lucide-react'
 import PageHero from '../../../components/ui/PageHero'
 
 const VALUES = [
-  { icon: ShieldCheck, title: 'Excellence',    color: 'bg-gold-500/15 text-gold-500',
-    desc: 'Every development we undertake is held to the highest standards of quality and craftsmanship. We believe your home should be nothing short of perfect.' },
-  { icon: Heart,       title: 'Integrity',     color: 'bg-blue-500/15 text-blue-500',
-    desc: 'We build relationships on trust. Our dealings with customers, partners, and communities are guided by honesty and transparency in every interaction.' },
-  { icon: Lightbulb,   title: 'Innovation',    color: 'bg-purple-500/15 text-purple-500',
-    desc: 'From architectural design to smart home technology, we constantly push boundaries to deliver living spaces that are ahead of their time.' },
-  { icon: Leaf,        title: 'Sustainability', color: 'bg-emerald-500/15 text-emerald-500',
-    desc: 'Building responsibly for future generations. We integrate sustainable practices into every project — from materials to energy-efficient design.' },
+  {
+    icon: ShieldCheck, title: 'Excellence', color: 'bg-gold-500/15 text-gold-500',
+    desc: 'Every development we undertake is held to the highest standards of quality and craftsmanship. We believe your home should be nothing short of perfect.'
+  },
+  {
+    icon: Heart, title: 'Integrity', color: 'bg-blue-500/15 text-blue-500',
+    desc: 'We build relationships on trust. Our dealings with customers, partners, and communities are guided by honesty and transparency in every interaction.'
+  },
+  {
+    icon: Lightbulb, title: 'Innovation', color: 'bg-purple-500/15 text-purple-500',
+    desc: 'From architectural design to smart home technology, we constantly push boundaries to deliver living spaces that are ahead of their time.'
+  },
+  {
+    icon: Leaf, title: 'Sustainability', color: 'bg-emerald-500/15 text-emerald-500',
+    desc: 'Building responsibly for future generations. We integrate sustainable practices into every project — from materials to energy-efficient design.'
+  },
 ]
 
 const STATS = [
-  { value: '12+',    label: 'Years of Excellence', icon: Award },
-  { value: '8',      label: 'Completed Projects',  icon: Building2 },
-  { value: '3,500+', label: 'Happy Residents',      icon: Users },
-  { value: '5',      label: 'Prime Locations',      icon: MapPinned },
+  { value: '12+', label: 'Years of Excellence', icon: Award },
+  { value: '8', label: 'Completed Projects', icon: Building2 },
+  { value: '3,500+', label: 'Happy Residents', icon: Users },
+  { value: '5', label: 'Prime Locations', icon: MapPinned },
 ]
 
 const TEAM = [
-  { name: 'Rajith Fernando',  role: 'Founder & CEO' },
-  { name: 'Amara Perera',     role: 'Chief Architect' },
-  { name: 'Dinesh Bandara',   role: 'Head of Sales' },
+  { name: 'Rajith Fernando', role: 'Founder & CEO' },
+  { name: 'Amara Perera', role: 'Chief Architect' },
+  { name: 'Dinesh Bandara', role: 'Head of Sales' },
   { name: 'Sachini Wickrama', role: 'Customer Relations' },
 ]
 
@@ -74,8 +84,7 @@ export default function AboutPage() {
             {/* Stats grid */}
             <div className="grid grid-cols-2 gap-5">
               {STATS.map(({ value, label, icon: Icon }) => (
-                <div key={label}
-                  className="card p-6 text-center hover:shadow-lg hover:-translate-y-1 transition-all">
+                <div key={label} className="card-hover p-6 text-center">
                   <div className="w-12 h-12 rounded-2xl bg-gold-500/10 flex items-center justify-center mx-auto mb-3">
                     <Icon className="w-6 h-6 text-gold-600" />
                   </div>
@@ -89,7 +98,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Our Values ── */}
-      <section className="section bg-cream-200">
+      <section className="section bg-gray-50">
         <div className="container-site">
           <div className="text-center mb-12">
             <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-gold-600 uppercase mb-3">
@@ -100,7 +109,7 @@ export default function AboutPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {VALUES.map(({ icon: Icon, title, desc, color }) => (
-              <div key={title} className="card p-6 hover:shadow-lg hover:-translate-y-1 transition-all">
+              <div key={title} className="card-hover p-6">
                 <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-4 ${color}`}>
                   <Icon className="w-6 h-6" />
                 </div>

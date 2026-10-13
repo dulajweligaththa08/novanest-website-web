@@ -12,8 +12,8 @@ const DEPARTMENTS = [
 ]
 
 export default function CareersPage() {
-  const [dept,     setDept]     = useState('All Departments')
-  const [search,   setSearch]   = useState('')
+  const [dept, setDept] = useState('All Departments')
+  const [search, setSearch] = useState('')
   const [applying, setApplying] = useState(null) // job object
 
   const { data, isLoading } = useQuery({
@@ -22,7 +22,7 @@ export default function CareersPage() {
   })
 
   const jobs = (data || []).filter(j => {
-    const matchDept   = dept === 'All Departments' || j.department === dept
+    const matchDept = dept === 'All Departments' || j.department === dept
     const matchSearch = !search || j.title.toLowerCase().includes(search.toLowerCase())
     return matchDept && matchSearch
   })
@@ -162,7 +162,19 @@ function ApplicationModal({ job, onClose }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+      <div className="relative rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto"
+        style={{
+          background: 'linear-gradient(145deg, rgba(200,220,230,0.22) 0%, rgba(180,210,225,0.12) 40%, rgba(160,200,220,0.18) 100%)',
+          backdropFilter: 'blur(24px) saturate(1.4)',
+          WebkitBackdropFilter: 'blur(24px) saturate(1.4)',
+          borderStyle: 'solid',
+          borderWidth: '1.5px',
+          borderTopColor: 'rgba(210,240,252,0.80)',
+          borderLeftColor: 'rgba(200,235,248,0.70)',
+          borderRightColor: 'rgba(130,190,218,0.32)',
+          borderBottomColor: 'rgba(110,175,208,0.28)',
+          boxShadow: '0 20px 60px rgba(0,0,0,0.35), 0 6px 20px rgba(0,0,0,0.20), inset 0 1px 0 rgba(255,255,255,0.75), inset 0 2px 5px rgba(255,255,255,0.22), inset 0 -1px 0 rgba(100,160,190,0.22)',
+        }}>
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
           <div>
             <h3 className="font-bold text-gray-900">Apply for Position</h3>

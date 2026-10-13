@@ -14,7 +14,7 @@ const TABS = ['Overview', 'Floor Plans', 'Gallery', 'Amenities', 'Availability',
 const FEATURE_ICONS = { Bedrooms: Bed, Bathrooms: Bath, 'Living Area': Maximize2 }
 
 export default function ApartmentDetailPage() {
-  const { id }       = useParams()
+  const { id } = useParams()
   const [tab, setTab] = useState('Overview')
   const [imgIdx, setImgIdx] = useState(0)
 
@@ -28,14 +28,15 @@ export default function ApartmentDetailPage() {
     <div className="min-h-screen flex items-center justify-center">
       <div className="text-center">
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Apartment not found</h2>
-        <Link to="/properties" className="btn-outline-gold mt-4">← Back to Properties</Link>
+        <Link to="/apartments" className="btn-outline-gold mt-4">← Back to Apartments</Link>
       </div>
     </div>
   )
 
-  const project  = apt.floor?.building?.project
-  const allImgs  = [...(apt.gallery || []), ...(project?.gallery || [])]
-  const heroImg  = allImgs[imgIdx]?.imageUrl || apt.gallery?.[0]?.imageUrl || project?.mainImage
+  const project = apt.floor?.building?.project
+  const allImgs = [...(apt.gallery || []), ...(project?.gallery || [])]
+  // Priority: unit mainImage → gallery images → project mainImage
+  const heroImg = apt.mainImage || allImgs[imgIdx]?.imageUrl || project?.mainImage
 
   const STATUS_COLOR = {
     AVAILABLE: 'bg-emerald-500', RESERVED: 'bg-amber-500',
@@ -99,7 +100,12 @@ export default function ApartmentDetailPage() {
       </div>
 
       {/* ── Tabs ── */}
-      <div className="sticky top-16 lg:top-20 z-30 bg-white border-b border-gray-100 shadow-sm">
+      <div className="sticky top-[74px] z-30 border-b border-white/20 shadow-sm"
+        style={{
+          background: 'linear-gradient(145deg, rgba(200,220,230,0.22) 0%, rgba(180,210,225,0.14) 100%)',
+          backdropFilter: 'blur(20px) saturate(1.4)',
+          WebkitBackdropFilter: 'blur(20px) saturate(1.4)',
+        }}>
         <div className="container-site">
           <div className="flex gap-0 overflow-x-auto">
             {TABS.map(t => (
@@ -133,12 +139,12 @@ export default function ApartmentDetailPage() {
                   <h3 className="text-lg font-bold text-navy-900 mb-4">Key Features</h3>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                     {[
-                      { label: 'Bedrooms',    val: apt.bedrooms },
-                      { label: 'Bathrooms',   val: apt.bathrooms },
-                      { label: 'Area',        val: apt.areaSqft ? `${Number(apt.areaSqft).toLocaleString()} sqft` : '—' },
-                      { label: 'Type',        val: apt.apartmentType?.name || '—' },
-                      { label: 'Floor',       val: apt.floor?.floorNumber ? `Floor ${apt.floor.floorNumber}` : '—' },
-                      { label: 'Building',    val: apt.floor?.building?.name || '—' },
+                      { label: 'Bedrooms', val: apt.bedrooms },
+                      { label: 'Bathrooms', val: apt.bathrooms },
+                      { label: 'Area', val: apt.areaSqft ? `${Number(apt.areaSqft).toLocaleString()} sqft` : '—' },
+                      { label: 'Type', val: apt.apartmentType?.name || '—' },
+                      { label: 'Floor', val: apt.floor?.floorNumber ? `Floor ${apt.floor.floorNumber}` : '—' },
+                      { label: 'Building', val: apt.floor?.building?.name || '—' },
                     ].map(({ label, val }) => (
                       <div key={label} className="p-3 bg-gray-50 rounded-xl">
                         <p className="text-xs text-gray-500 mb-0.5">{label}</p>
@@ -229,6 +235,27 @@ export default function ApartmentDetailPage() {
                 className="btn-outline-gold w-full justify-center text-sm">
                 Send Inquiry <ArrowRight className="w-4 h-4" />
               </Link>
+              {/* Virtual tour / external link */}
+              {apt.virtualTourUrl && (
+                <a
+                  href={apt.virtualTourUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 w-full inline-flex items-center justify-center gap-2
+                             px-4 py-2.5 rounded-xl text-sm font-semibold text-white transition-all
+                             hover:brightness-110"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(30,58,138,0.85), rgba(22,45,110,0.90))',
+                    border: '1px solid rgba(130,147,248,0.35)',
+                    boxShadow: '0 2px 12px rgba(30,58,138,0.25)',
+                  }}
+                >
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
+                  </svg>
+                  Virtual Tour / View More
+                </a>
+              )}
             </div>
 
             {/* Specs */}
@@ -236,12 +263,12 @@ export default function ApartmentDetailPage() {
               <h3 className="font-bold text-gray-900 mb-3 text-sm">Specifications</h3>
               {[
                 { label: 'Unit Number', val: apt.unitNumber },
-                { label: 'Bedrooms',   val: apt.bedrooms },
-                { label: 'Bathrooms',  val: apt.bathrooms },
-                { label: 'Area',       val: apt.areaSqft ? `${Number(apt.areaSqft).toLocaleString()} sqft` : '—' },
-                { label: 'Type',       val: apt.apartmentType?.name || '—' },
-                { label: 'Project',    val: project?.name },
-                { label: 'Location',   val: project?.location },
+                { label: 'Bedrooms', val: apt.bedrooms },
+                { label: 'Bathrooms', val: apt.bathrooms },
+                { label: 'Area', val: apt.areaSqft ? `${Number(apt.areaSqft).toLocaleString()} sqft` : '—' },
+                { label: 'Type', val: apt.apartmentType?.name || '—' },
+                { label: 'Project', val: project?.name },
+                { label: 'Location', val: project?.location },
               ].map(({ label, val }) => val && (
                 <div key={label} className="flex justify-between py-2 border-b border-gray-50 last:border-0 text-sm">
                   <span className="text-gray-500">{label}</span>

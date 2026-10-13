@@ -15,8 +15,8 @@ const nav = [
   { to: '/portal',               label: 'Dashboard',     icon: LayoutDashboard, end: true },
   { to: '/portal/apartment',     label: 'My Apartment',  icon: Home },
   { to: '/portal/updates',       label: 'Updates',       icon: TrendingUp },
-  { to: '/portal/documents',     label: 'Documents',     icon: FileText },
-  { to: '/portal/notifications', label: 'Notifications', icon: Bell },
+  /*{ to: '/portal/documents',     label: 'Documents',     icon: FileText },*/
+  /*{ to: '/portal/notifications', label: 'Notifications', icon: Bell },*/
   { to: '/portal/profile',       label: 'Profile',       icon: User },
 ]
 
