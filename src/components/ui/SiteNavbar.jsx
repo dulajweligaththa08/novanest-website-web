@@ -82,19 +82,19 @@ function NavbarSVG({ svgW, svgH }) {
     >
       <defs>
         <linearGradient id="barFill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stopColor="rgba(15,32,64,0.52)" />
-          <stop offset="45%"  stopColor="rgba(10,22,40,0.45)" />
-          <stop offset="100%" stopColor="rgba(15,32,64,0.52)" />
+          <stop offset="0%"   stopColor="rgba(237,232,223,0.96)" />
+          <stop offset="45%"  stopColor="rgba(244,240,232,0.94)" />
+          <stop offset="100%" stopColor="rgba(237,232,223,0.96)" />
         </linearGradient>
         <linearGradient id="goldStroke" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"   stopColor="rgba(201,168,76,0.30)" />
-          <stop offset="35%"  stopColor="rgba(201,168,76,0.90)" />
-          <stop offset="50%"  stopColor="rgba(230,200,110,1)"   />
-          <stop offset="65%"  stopColor="rgba(201,168,76,0.90)" />
-          <stop offset="100%" stopColor="rgba(201,168,76,0.30)" />
+          <stop offset="0%"   stopColor="rgba(154,120,82,0.20)" />
+          <stop offset="35%"  stopColor="rgba(154,120,82,0.80)" />
+          <stop offset="50%"  stopColor="rgba(190,155,100,1)"   />
+          <stop offset="65%"  stopColor="rgba(154,120,82,0.80)" />
+          <stop offset="100%" stopColor="rgba(154,120,82,0.20)" />
         </linearGradient>
         <filter id="barShadow" x="0" y="-10%" width="100%" height="130%">
-          <feDropShadow dx="0" dy="6" stdDeviation="10" floodColor="rgba(0,0,0,0.50)" />
+          <feDropShadow dx="0" dy="4" stdDeviation="8" floodColor="rgba(48,39,34,0.15)" />
         </filter>
       </defs>
 
@@ -235,9 +235,12 @@ export default function SiteNavbar() {
                 className={({ isActive }) =>
                   `text-sm font-medium transition-colors duration-200 relative pb-1
                    ${isActive
-                    ? 'text-gold-400 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold-400 after:rounded-full'
-                    : 'text-white/80 hover:text-white hover:text-gold-300'}`
+                    ? 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:rounded-full'
+                    : 'hover:opacity-100'}`
                 }
+                style={({ isActive }) => ({
+                  color: isActive ? '#9A7852' : 'rgba(48,39,34,0.72)',
+                })}
               >
                 {label}
               </NavLink>
@@ -255,9 +258,9 @@ export default function SiteNavbar() {
               onClick={() => setSearchOpen(o => !o)}
               className="w-9 h-9 rounded-full flex items-center justify-center transition-colors"
               style={{
-                background: 'rgba(255,255,255,0.08)',
-                border: '1.5px solid rgba(255,255,255,0.28)',
-                color: 'rgba(255,255,255,0.80)',
+                background: 'rgba(48,39,34,0.06)',
+                border: '1.5px solid rgba(48,39,34,0.18)',
+                color: 'rgba(48,39,34,0.75)',
               }}
               aria-label="Search"
             >
@@ -267,13 +270,13 @@ export default function SiteNavbar() {
             {isAuthenticated ? (
               <Link
                 to="/portal"
-                className="flex items-center gap-1.5 text-sm font-semibold transition-all"
+                className="flex items-center gap-1.5 text-sm font-semibold transition-all hover:opacity-80"
                 style={{
-                  background: 'rgba(255,255,255,0.92)',
-                  border: '1.5px solid rgba(255,255,255,0.70)',
+                  background: '#302722',
+                  border: '1.5px solid #302722',
                   borderRadius: '999px',
                   padding: '6px 20px',
-                  color: '#0A1628',
+                  color: '#FFFDF8',
                 }}
               >
                 <User className="w-3.5 h-3.5" /> My Portal
@@ -281,13 +284,13 @@ export default function SiteNavbar() {
             ) : (
               <Link
                 to="/portal/login"
-                className="text-sm font-semibold transition-all hover:bg-white"
+                className="text-sm font-semibold transition-all hover:opacity-80"
                 style={{
-                  background: 'rgba(255,255,255,0.92)',
-                  border: '1.5px solid rgba(255,255,255,0.70)',
+                  background: '#302722',
+                  border: '1.5px solid #302722',
                   borderRadius: '999px',
                   padding: '6px 24px',
-                  color: '#0A1628',
+                  color: '#FFFDF8',
                 }}
               >
                 Login
@@ -300,16 +303,16 @@ export default function SiteNavbar() {
             <motion.button
               whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.94 }}
               onClick={() => setSearchOpen(o => !o)}
-              className="w-8 h-8 rounded-full flex items-center justify-center text-white/75"
-              style={{ border: '1.5px solid rgba(255,255,255,0.25)' }}
+              className="w-8 h-8 rounded-full flex items-center justify-center transition-colors"
+              style={{ border: '1.5px solid rgba(48,39,34,0.20)', color: 'rgba(48,39,34,0.70)' }}
               aria-label="Search"
             >
               <Search className="w-3.5 h-3.5" />
             </motion.button>
             <button
               onClick={() => setMenuOpen(o => !o)}
-              className="w-8 h-8 rounded-full flex items-center justify-center text-white/80 hover:text-white transition-colors"
-              style={{ border: '1.5px solid rgba(255,255,255,0.25)' }}
+              className="w-8 h-8 rounded-full flex items-center justify-center transition-colors"
+              style={{ border: '1.5px solid rgba(48,39,34,0.20)', color: 'rgba(48,39,34,0.70)' }}
               aria-label="Menu"
             >
               <AnimatePresence mode="wait" initial={false}>
@@ -338,8 +341,8 @@ export default function SiteNavbar() {
             transition={{ duration: 0.22 }}
             className="overflow-hidden"
             style={{
-              background: '#0d1e35',
-              borderBottom: '1px solid rgba(201,168,76,0.20)',
+              background: '#EDE8DF',
+              borderBottom: '1px solid #D7CEC2',
             }}
           >
             <form onSubmit={handleSearch} className="flex gap-2 px-6 py-3 max-w-2xl mx-auto">
@@ -348,7 +351,7 @@ export default function SiteNavbar() {
                 value={searchQ}
                 onChange={e => setSearchQ(e.target.value)}
                 placeholder="Search properties, projects…"
-                className="flex-1 bg-white/10 border border-white/20 rounded-xl px-4 py-2 text-sm text-white placeholder-white/40 outline-none focus:border-gold-400"
+                className="input flex-1"
               />
               <button type="submit" className="btn-primary py-2 text-sm">
                 <Search className="w-4 h-4" /> Search
@@ -368,8 +371,8 @@ export default function SiteNavbar() {
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden lg:hidden"
             style={{
-              background: '#0A1628',
-              borderBottom: '1px solid rgba(201,168,76,0.20)',
+              background: '#F4F0E8',
+              borderBottom: '1px solid #D7CEC2',
             }}
           >
             <div className="px-4 py-3 space-y-0.5">
@@ -381,21 +384,23 @@ export default function SiteNavbar() {
                   onClick={() => setMenuOpen(false)}
                   className={({ isActive }) =>
                     `block px-3 py-2.5 rounded-xl text-sm font-medium transition-colors
-                     ${isActive ? 'bg-gold-500/20 text-gold-400' : 'text-white/80 hover:text-white hover:bg-white/10'}`
+                     ${isActive
+                      ? 'bg-gold-500/10 text-gold-600'
+                      : 'text-navy-900/70 hover:text-navy-900 hover:bg-navy-900/5'}`
                   }
                 >
                   {label}
                 </NavLink>
               ))}
-              <div className="pt-2 border-t border-white/10 mt-1">
+              <div className="pt-2 border-t border-navy-900/10 mt-1">
                 {isAuthenticated ? (
                   <Link to="/portal" onClick={() => setMenuOpen(false)}
-                    className="block px-3 py-2.5 rounded-xl text-sm font-medium text-white/80 hover:text-white hover:bg-white/10">
+                    className="block px-3 py-2.5 rounded-xl text-sm font-medium text-navy-900/70 hover:text-navy-900 hover:bg-navy-900/5">
                     My Portal
                   </Link>
                 ) : (
                   <Link to="/portal/login" onClick={() => setMenuOpen(false)}
-                    className="block px-3 py-2.5 rounded-xl text-sm font-medium text-white/80 hover:text-white hover:bg-white/10">
+                    className="block px-3 py-2.5 rounded-xl text-sm font-medium text-navy-900/70 hover:text-navy-900 hover:bg-navy-900/5">
                     Login
                   </Link>
                 )}

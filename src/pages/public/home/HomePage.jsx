@@ -159,27 +159,27 @@ const VALUES = [
   { icon: Leaf,        title: 'Sustainability', desc: 'Building a greener future through responsible development.' },
 ]
 
-// ─── Glass style helper (reusable) ────────────────────────────────────────────
-// Matches the tempered-glass panel image: near-transparent, blue-tinted edges,
-// inner highlight at top, deep outer shadow.
+// ─── Glass style helper (warm palette) ───────────────────────────────────────
 const glassStyle = (opts = {}) => ({
   background: opts.dark
-    ? 'linear-gradient(145deg, rgba(180,210,230,0.14) 0%, rgba(150,195,220,0.06) 40%, rgba(140,190,215,0.10) 100%)'
-    : 'linear-gradient(145deg, rgba(200,220,235,0.22) 0%, rgba(180,210,228,0.12) 40%, rgba(165,205,225,0.18) 100%)',
-  backdropFilter: 'blur(20px) saturate(1.4)',
-  WebkitBackdropFilter: 'blur(20px) saturate(1.4)',
+    ? 'linear-gradient(145deg, rgba(255,253,248,0.14) 0%, rgba(255,253,248,0.08) 40%, rgba(255,253,248,0.12) 100%)'
+    : 'linear-gradient(145deg, rgba(255,253,248,0.85) 0%, rgba(244,240,232,0.75) 100%)',
+  backdropFilter: 'blur(16px) saturate(1.2)',
+  WebkitBackdropFilter: 'blur(16px) saturate(1.2)',
   borderStyle: 'solid',
   borderWidth: opts.thin ? '1px' : '1.5px',
-  borderTopColor:    'rgba(210,240,252,0.80)',
-  borderLeftColor:   'rgba(200,235,248,0.68)',
-  borderRightColor:  'rgba(130,190,218,0.28)',
-  borderBottomColor: 'rgba(110,178,210,0.24)',
-  boxShadow: opts.noShadow ? 'none' : [
-    '0 16px 48px rgba(0,0,0,0.42)',
-    '0 4px 16px rgba(0,0,0,0.28)',
-    'inset 0 1px 0 rgba(255,255,255,0.62)',
-    'inset 0 2px 5px rgba(255,255,255,0.18)',
-    'inset 0 -1px 0 rgba(90,150,185,0.20)',
+  borderTopColor:    opts.dark ? 'rgba(255,253,248,0.30)' : 'rgba(255,253,248,0.90)',
+  borderLeftColor:   opts.dark ? 'rgba(255,253,248,0.22)' : 'rgba(215,206,194,0.80)',
+  borderRightColor:  opts.dark ? 'rgba(154,120,82,0.15)' : 'rgba(154,120,82,0.25)',
+  borderBottomColor: opts.dark ? 'rgba(154,120,82,0.12)' : 'rgba(154,120,82,0.22)',
+  boxShadow: opts.noShadow ? 'none' : opts.dark ? [
+    '0 8px 32px rgba(48,39,34,0.25)',
+    '0 2px 8px rgba(48,39,34,0.15)',
+    'inset 0 1px 0 rgba(255,253,248,0.25)',
+  ].join(', ') : [
+    '0 8px 32px rgba(48,39,34,0.10)',
+    '0 2px 8px rgba(48,39,34,0.06)',
+    'inset 0 1px 0 rgba(255,255,255,0.90)',
   ].join(', '),
   ...opts.extra,
 })
@@ -221,7 +221,7 @@ export default function HomePage() {
   const featured   = projects[0]
 
   return (
-    <div className="bg-white overflow-x-hidden">
+    <div style={{ backgroundColor: '#F4F0E8' }} className="overflow-x-hidden">
 
       {/* ── Fixed navbar — same hide/show scroll behaviour as all other pages ── */}
       <header className="fixed top-0 left-0 right-0 z-50">
@@ -239,8 +239,8 @@ export default function HomePage() {
               ├── Right featured-project card
               └── Bottom stats bar pill
       ════════════════════════════════════════════════════════════════════ */}
-      <section className="relative bg-navy-900 overflow-hidden"
-        style={{ minHeight: '100svh', paddingTop: '96px' }}>
+      <section className="relative overflow-hidden"
+        style={{ minHeight: '100svh', paddingTop: '96px', backgroundColor: '#F4F0E8' }}>
 
         {/* ── Outer glass frame ───────────────────────────────────────────── */}
         <div className="relative z-10 flex items-stretch min-h-screen p-3 lg:p-5">
@@ -250,19 +250,18 @@ export default function HomePage() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             style={{
-              /* The glass border/shadow — no background blur here so the image is crisp */
               borderRadius: '24px',
               minHeight: 'calc(100svh - 2.5rem)',
-              border: '1.5px solid rgba(210,240,252,0.35)',
-              borderTopColor:    'rgba(220,245,255,0.55)',
-              borderLeftColor:   'rgba(210,240,250,0.45)',
-              borderRightColor:  'rgba(140,200,225,0.20)',
-              borderBottomColor: 'rgba(120,185,215,0.18)',
+              border: '1.5px solid rgba(154,120,82,0.25)',
+              borderTopColor:    'rgba(215,206,194,0.70)',
+              borderLeftColor:   'rgba(215,206,194,0.55)',
+              borderRightColor:  'rgba(154,120,82,0.20)',
+              borderBottomColor: 'rgba(154,120,82,0.18)',
               boxShadow: [
-                '0 16px 48px rgba(0,0,0,0.55)',
-                '0 4px 16px rgba(0,0,0,0.35)',
-                'inset 0 1px 0 rgba(255,255,255,0.40)',
-                'inset 0 -1px 0 rgba(90,150,185,0.15)',
+                '0 16px 48px rgba(48,39,34,0.18)',
+                '0 4px 16px rgba(48,39,34,0.10)',
+                'inset 0 1px 0 rgba(255,253,248,0.60)',
+                'inset 0 -1px 0 rgba(154,120,82,0.10)',
               ].join(', '),
             }}
           >
@@ -274,8 +273,8 @@ export default function HomePage() {
             {/* Vignette inside the frame */}
             <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none" style={{ zIndex: 1,
               background: [
-                'linear-gradient(to right, rgba(10,22,40,0.72) 0%, rgba(10,22,40,0.38) 45%, rgba(10,22,40,0.05) 100%)',
-                'linear-gradient(to bottom, rgba(10,22,40,0.25) 0%, transparent 25%, transparent 72%, rgba(10,22,40,0.45) 100%)',
+                'linear-gradient(to right, rgba(244,240,232,0.85) 0%, rgba(244,240,232,0.55) 40%, rgba(244,240,232,0.08) 100%)',
+                'linear-gradient(to bottom, rgba(244,240,232,0.15) 0%, transparent 20%, transparent 75%, rgba(244,240,232,0.30) 100%)',
               ].join(', '),
             }} />
 
@@ -317,11 +316,11 @@ export default function HomePage() {
                   <motion.span
                     variants={heroLabel} initial="hidden" animate="visible"
                     className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase mb-4"
-                    style={{ color: '#e0b84a' }}
+                    style={{ color: '#9A7852' }}
                   >
                     <motion.span
                       className="block h-px"
-                      style={{ backgroundColor: '#C9A84C' }}
+                      style={{ backgroundColor: '#9A7852' }}
                       initial={{ width: 0 }} animate={{ width: 28 }}
                       transition={{ delay: 0.4, duration: 0.5 }}
                     />
@@ -331,18 +330,19 @@ export default function HomePage() {
                   {/* Headline */}
                   <motion.h1
                     variants={heroTitle} initial="hidden" animate="visible"
-                    className="font-bold text-white leading-[1.08] mb-5"
-                    style={{ fontSize: 'clamp(2.4rem, 5.5vw, 4rem)' }}
+                    className="font-bold leading-[1.08] mb-5"
+                    style={{ fontSize: 'clamp(2.4rem, 5.5vw, 4rem)', color: '#302722' }}
                   >
                     Live Smart.<br />
                     Live Better.<br />
-                    <span className="text-gold-500">Live NovaNest.</span>
+                    <span style={{ color: '#9A7852' }}>Live NovaNest.</span>
                   </motion.h1>
 
                   {/* Subtitle */}
                   <motion.p
                     variants={heroSubtitle} initial="hidden" animate="visible"
-                    className="text-white/70 text-base leading-relaxed max-w-md mb-7"
+                    className="text-base leading-relaxed max-w-md mb-7"
+                    style={{ color: 'rgba(48,39,34,0.70)' }}
                   >
                     Discover premium living spaces designed for a brighter tomorrow.
                     Modern homes, world-class amenities, and unmatched lifestyle.
@@ -360,8 +360,15 @@ export default function HomePage() {
                     </motion.div>
                     <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
                       <Link to="/contact"
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white transition-all"
-                        style={glassStyle({ thin: true })}>
+                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all"
+                        style={{
+                          background: 'rgba(255,253,248,0.85)',
+                          backdropFilter: 'blur(8px)',
+                          WebkitBackdropFilter: 'blur(8px)',
+                          border: '1.5px solid rgba(48,39,34,0.20)',
+                          color: '#302722',
+                          boxShadow: '0 2px 8px rgba(48,39,34,0.08)',
+                        }}>
                         Send Inquiry
                       </Link>
                     </motion.div>
@@ -375,14 +382,14 @@ export default function HomePage() {
                     className="hidden lg:flex justify-end"
                   >
                     <div className="w-64 xl:w-72 rounded-2xl overflow-hidden"
-                      style={glassStyle({ dark: true })}>
+                      style={glassStyle({ dark: false })}>
                       {/* Project image */}
                       {featured.mainImage && (
                         <div className="relative h-40 overflow-hidden">
                           <img src={featured.mainImage} alt={featured.name}
                             className="w-full h-full object-cover" />
                           <div className="absolute inset-0"
-                            style={{ background: 'linear-gradient(to top, rgba(10,22,40,0.5) 0%, transparent 60%)' }} />
+                            style={{ background: 'linear-gradient(to top, rgba(48,39,34,0.4) 0%, transparent 60%)' }} />
                         </div>
                       )}
 
@@ -396,25 +403,25 @@ export default function HomePage() {
                             }}>
                             {featured.status}
                           </span>
-                          <span className="text-white/55 text-xs">Featured Project</span>
+                      <span className="text-white/55 text-xs">Featured Project</span>
                         </div>
 
                         {/* Name */}
-                        <h3 className="text-white font-bold text-sm leading-snug mb-1.5">
+                        <h3 className="text-navy-900 font-bold text-sm leading-snug mb-1.5">
                           {featured.name}
                         </h3>
 
                         {/* Location */}
                         <div className="flex items-center gap-1 mb-2.5">
-                          <MapPin className="w-3 h-3 text-white/50 flex-shrink-0" />
-                          <span className="text-white/60 text-xs uppercase tracking-wide">
+                          <MapPin className="w-3 h-3 flex-shrink-0" style={{ color: '#9A7852' }} />
+                          <span className="text-xs uppercase tracking-wide" style={{ color: 'rgba(48,39,34,0.55)' }}>
                             {featured.location}
                           </span>
                         </div>
 
                         {/* Price */}
                         {featured.startingPrice && (
-                          <p className="font-bold text-sm mb-3" style={{ color: '#e0b84a' }}>
+                          <p className="font-bold text-sm mb-3" style={{ color: '#9A7852' }}>
                             From LKR {Number(featured.startingPrice).toLocaleString()}
                           </p>
                         )}
@@ -438,7 +445,14 @@ export default function HomePage() {
             <motion.div
               variants={statsBar} initial="hidden" animate="visible"
               className="mx-4 lg:mx-10 mb-4 rounded-2xl"
-              style={glassStyle({ dark: true })}
+              style={{
+                background: 'rgba(255,253,248,0.82)',
+                backdropFilter: 'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)',
+                border: '1.5px solid rgba(215,206,194,0.70)',
+                borderTopColor: 'rgba(255,253,248,0.90)',
+                boxShadow: '0 4px 24px rgba(48,39,34,0.10), inset 0 1px 0 rgba(255,255,255,0.80)',
+              }}
             >
               <div className="grid grid-cols-2 lg:grid-cols-4">
                 {STATS.map(({ value, suffix, label, icon: Icon }, i) => (
@@ -446,18 +460,18 @@ export default function HomePage() {
                     key={label}
                     className="flex items-center justify-center gap-3 py-4 px-4"
                     style={{
-                      borderRight: i < STATS.length - 1 ? '1px solid rgba(255,255,255,0.10)' : 'none',
+                      borderRight: i < STATS.length - 1 ? '1px solid rgba(48,39,34,0.10)' : 'none',
                     }}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.0 + i * 0.1 }}
                   >
-                    <Icon className="w-5 h-5 flex-shrink-0" style={{ color: '#e0b84a' }} />
+                    <Icon className="w-5 h-5 flex-shrink-0" style={{ color: '#9A7852' }} />
                     <div>
-                      <p className="text-xl font-bold text-white leading-none">
+                      <p className="text-xl font-bold leading-none" style={{ color: '#302722' }}>
                         <Counter target={value} suffix={suffix} />
                       </p>
-                      <p className="text-white/55 text-xs mt-0.5">{label}</p>
+                      <p className="text-xs mt-0.5" style={{ color: 'rgba(48,39,34,0.55)' }}>{label}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -475,19 +489,15 @@ export default function HomePage() {
       {projects.length > 0 && (
         <section className="section relative overflow-hidden"
           style={{
-            background: 'linear-gradient(160deg, rgba(200,220,235,0.55) 0%, rgba(180,210,228,0.35) 40%, rgba(165,205,225,0.48) 100%)',
-            backdropFilter: 'blur(24px) saturate(1.3)',
-            WebkitBackdropFilter: 'blur(24px) saturate(1.3)',
-            borderTop:    '1.5px solid rgba(210,240,252,0.60)',
-            borderBottom: '1.5px solid rgba(110,178,210,0.22)',
-            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.55), inset 0 -1px 0 rgba(90,150,185,0.18)',
+            background: '#FFFDF8',
+            borderTop:    '1px solid #D7CEC2',
+            borderBottom: '1px solid #D7CEC2',
           }}>
-          {/* Subtle inner glow radials */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full opacity-20"
-              style={{ background: 'radial-gradient(circle, rgba(201,168,76,0.35) 0%, transparent 70%)' }} />
-            <div className="absolute -bottom-24 -right-24 w-80 h-80 rounded-full opacity-15"
-              style={{ background: 'radial-gradient(circle, rgba(147,197,253,0.4) 0%, transparent 70%)' }} />
+            <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full opacity-30"
+              style={{ background: 'radial-gradient(circle, rgba(154,120,82,0.15) 0%, transparent 70%)' }} />
+            <div className="absolute -bottom-24 -right-24 w-80 h-80 rounded-full opacity-20"
+              style={{ background: 'radial-gradient(circle, rgba(154,120,82,0.12) 0%, transparent 70%)' }} />
           </div>
 
           <div className="container-site relative">
@@ -512,15 +522,7 @@ export default function HomePage() {
               variants={fadeUp} initial="hidden" whileInView="visible" viewport={viewportOnce}>
               <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
                 <Link to="/apartments"
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold transition-all"
-                  style={{
-                    background: 'rgba(255,255,255,0.22)',
-                    backdropFilter: 'blur(12px)',
-                    WebkitBackdropFilter: 'blur(12px)',
-                    border: '1.5px solid rgba(255,255,255,0.50)',
-                    color: '#0A1628',
-                    boxShadow: '0 4px 16px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.70)',
-                  }}>
+                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold transition-all btn-outline-gold">
                   View All Projects <ArrowRight className="w-4 h-4" />
                 </Link>
               </motion.div>
@@ -531,7 +533,7 @@ export default function HomePage() {
 
       {/* ── AVAILABLE APARTMENTS ───────────────────────────────────────── */}
       {apartments.length > 0 && (
-        <section className="section bg-white">
+        <section className="section" style={{ backgroundColor: '#F4F0E8' }}>
           <div className="container-site">
             <SectionHeader label="Available Units" title="Find Your Perfect Home"
               subtitle="Browse our available apartments and find the space that fits your lifestyle." />
@@ -557,7 +559,7 @@ export default function HomePage() {
       )}
 
       {/* ── WHY CHOOSE US ──────────────────────────────────────────────── */}
-      <section className="section bg-navy-900">
+      <section className="section" style={{ backgroundColor: '#302722' }}>
         <div className="container-site">
           <SectionHeader label="Why NovaNest" title="Built on Trust. Designed for Life."
             subtitle="We believe every family deserves a home that inspires." light />
@@ -583,7 +585,7 @@ export default function HomePage() {
       </section>
 
       {/* ── CTA BANNER ─────────────────────────────────────────────────── */}
-      <section className="section-sm bg-gold-500 overflow-hidden relative">
+      <section className="section-sm overflow-hidden relative" style={{ backgroundColor: '#9A7852' }}>
         <motion.div
           className="absolute inset-0 bg-gradient-to-r from-gold-600/40 to-transparent"
           initial={{ x: '-100%' }} whileInView={{ x: 0 }}
@@ -626,19 +628,19 @@ function SectionHeader({ label, title, subtitle, light = false, glass = false })
   return (
     <motion.div className="text-center mb-10"
       variants={fadeUp} initial="hidden" whileInView="visible" viewport={viewportOnce}>
-      <span className={`inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase mb-3
-        ${light ? 'text-gold-400' : glass ? 'text-gold-600' : 'text-gold-600'}`}>
-        <span className="w-6 h-px bg-gold-500" />
+      <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase mb-3"
+        style={{ color: '#9A7852' }}>
+        <span className="w-6 h-px" style={{ backgroundColor: '#9A7852' }} />
         {label}
-        <span className="w-6 h-px bg-gold-500" />
+        <span className="w-6 h-px" style={{ backgroundColor: '#9A7852' }} />
       </span>
-      <h2 className={`text-3xl lg:text-4xl font-bold mb-3
-        ${light ? 'text-white' : glass ? 'text-navy-900' : 'text-navy-900'}`}>
+      <h2 className="text-3xl lg:text-4xl font-bold mb-3"
+        style={{ color: light ? '#FFFDF8' : '#302722' }}>
         {title}
       </h2>
       {subtitle && (
-        <p className={`max-w-2xl mx-auto text-base
-          ${light ? 'text-white/60' : glass ? 'text-navy-800/70' : 'text-gray-500'}`}>
+        <p className="max-w-2xl mx-auto text-base"
+          style={{ color: light ? 'rgba(255,253,248,0.65)' : 'rgba(48,39,34,0.60)' }}>
           {subtitle}
         </p>
       )}
@@ -649,32 +651,15 @@ function SectionHeader({ label, title, subtitle, light = false, glass = false })
 function ProjectCard({ project }) {
   return (
     <motion.div
-      whileHover={{ y: -6, boxShadow: [
-        '0 20px 48px rgba(0,0,0,0.14)',
-        '0 4px 16px rgba(0,0,0,0.08)',
-        'inset 0 1px 0 rgba(255,255,255,0.90)',
-        'inset 0 -1px 0 rgba(100,160,190,0.20)',
-      ].join(', ') }}
+      whileHover={{ y: -6 }}
       transition={{ duration: 0.3, ease: 'easeOut' }}>
     <Link to={`/projects/${project.slug}`}
       className="group block rounded-2xl overflow-hidden transition-all duration-300"
       style={{
-        /* Light glass card — near-transparent, teal-tinted edges, deep shadow */
-        background: 'linear-gradient(145deg, rgba(255,255,255,0.62) 0%, rgba(240,250,255,0.48) 100%)',
-        backdropFilter: 'blur(16px) saturate(1.3)',
-        WebkitBackdropFilter: 'blur(16px) saturate(1.3)',
-        borderStyle: 'solid',
-        borderWidth: '1.5px',
-        borderTopColor:    'rgba(220,245,255,0.90)',
-        borderLeftColor:   'rgba(210,240,252,0.80)',
-        borderRightColor:  'rgba(140,200,225,0.35)',
-        borderBottomColor: 'rgba(120,185,215,0.30)',
-        boxShadow: [
-          '0 8px 32px rgba(0,0,0,0.10)',
-          '0 2px 8px rgba(0,0,0,0.06)',
-          'inset 0 1px 0 rgba(255,255,255,0.85)',
-          'inset 0 -1px 0 rgba(100,160,190,0.15)',
-        ].join(', '),
+        background: 'linear-gradient(145deg, #FFFDF8 0%, #F4F0E8 100%)',
+        border: '1.5px solid #D7CEC2',
+        borderTopColor: '#EDE8DF',
+        boxShadow: '0 4px 20px rgba(48,39,34,0.08), inset 0 1px 0 rgba(255,255,255,0.90)',
       }}>
 
       {/* Image */}
@@ -684,11 +669,12 @@ function ProjectCard({ project }) {
             className="w-full h-full object-cover"
             whileHover={{ scale: 1.07 }} transition={{ duration: 0.5 }} />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-navy-800 to-navy-900 flex items-center justify-center">
-            <Building2 className="w-12 h-12 text-white/20" />
+          <div className="w-full h-full flex items-center justify-center"
+            style={{ background: '#EDE8DF' }}>
+            <Building2 className="w-12 h-12" style={{ color: '#D7CEC2' }} />
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent" />
         <span className={`absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-full
           ${project.status === 'COMPLETED' ? 'bg-blue-500 text-white'
           : project.status === 'ONGOING'   ? 'bg-emerald-500 text-white'
@@ -697,16 +683,17 @@ function ProjectCard({ project }) {
         </span>
       </div>
 
-      {/* Info — glass content area */}
+      {/* Info */}
       <div className="p-5">
-        <h3 className="font-bold text-navy-900 text-lg mb-1 group-hover:text-gold-600 transition-colors">
+        <h3 className="font-bold text-lg mb-1 transition-colors group-hover:text-gold-600"
+          style={{ color: '#302722' }}>
           {project.name}
         </h3>
-        <div className="flex items-center gap-1 text-navy-800/60 text-sm mb-3">
+        <div className="flex items-center gap-1 text-sm mb-3" style={{ color: 'rgba(48,39,34,0.55)' }}>
           <MapPin className="w-3.5 h-3.5" /> {project.location}
         </div>
         {project.startingPrice && (
-          <p className="text-gold-600 font-bold text-sm">
+          <p className="font-bold text-sm" style={{ color: '#9A7852' }}>
             From LKR {Number(project.startingPrice).toLocaleString()}
           </p>
         )}
