@@ -225,15 +225,15 @@ export default function SiteNavbar() {
             zIndex: 5,
           }}
         >
-          {/* Left: nav links */}
-          <nav className="hidden lg:flex items-center gap-7 pl-8 flex-1">
+          {/* Left: nav links — only show at xl+ to prevent cramping */}
+          <nav className="hidden xl:flex items-center gap-4 pl-6 flex-1">
             {NAV_LINKS.map(({ to, label }) => (
               <NavLink
                 key={to}
                 to={to}
                 end={to === '/'}
                 className={({ isActive }) =>
-                  `text-sm font-medium transition-colors duration-200 relative pb-1
+                  `text-sm font-medium transition-colors duration-200 relative pb-1 whitespace-nowrap
                    ${isActive
                     ? 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:rounded-full'
                     : 'hover:opacity-100'}`
@@ -250,8 +250,8 @@ export default function SiteNavbar() {
           {/* Centre spacer — keeps right controls from being pushed left by nav */}
           <div style={{ width: `${CREST_W}px`, flexShrink: 0 }} />
 
-          {/* Right: search + login */}
-          <div className="hidden lg:flex items-center gap-3 pr-8 flex-1 justify-end">
+          {/* Right: search + login — xl+ only */}
+          <div className="hidden xl:flex items-center gap-3 pr-6 flex-1 justify-end">
             <motion.button
               whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.94 }}
@@ -298,8 +298,8 @@ export default function SiteNavbar() {
             )}
           </div>
 
-          {/* Mobile: hamburger */}
-          <div className="lg:hidden flex items-center gap-3 pr-4 ml-auto">
+          {/* Mobile/tablet: hamburger — shows below xl */}
+          <div className="xl:hidden flex items-center gap-3 pr-4 ml-auto">
             <motion.button
               whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.94 }}
               onClick={() => setSearchOpen(o => !o)}
@@ -369,7 +369,7 @@ export default function SiteNavbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{    opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden lg:hidden"
+            className="overflow-hidden xl:hidden"
             style={{
               background: '#F4F0E8',
               borderBottom: '1px solid #D7CEC2',
